@@ -15,7 +15,8 @@ from User import user
 import Version
 from timeit import default_timer
 import Security
-#import Encrypt
+import SQLManager
+import Encrypt
 
 
 # Global Variables
@@ -51,13 +52,17 @@ def getUserObject(clientAddress, userID):
         return userObject
     
 
-# # generates a unique user ID
-# def generateUserID():
-#     tempID = uuid.uuid4()
-#     while tempID in currentIDs:
-#         tempID = uuid.uuid4()
-        
-#     return tempID
+# generates a unique user ID
+def generateUserID():
+    db = SQLManager.SQLManager()
+    SQL = "select MAX(UserID) + 1 as NewUserID from tblUser"
+    data = db.select(SQL)
+
+    for record in data:
+        if record.NewUserID == None:
+            return 1
+        return int(record.NewUserID)
+    
 
 def getUsername(currentUser):
     username = currentUser.username
@@ -71,7 +76,7 @@ def getNumberOfCachedUsers():
     return len(userList)
 
 def getUserID(msg):
-    return msg[0:msg.find(" ")]
+    return int(msg[0:msg.find(" ")])
 
 # sub class of UDP server
 class UDPHandler(socketserver.DatagramRequestHandler):
@@ -85,6 +90,9 @@ class UDPHandler(socketserver.DatagramRequestHandler):
 
         # retrieve unique client ID
         userID = getUserID(clientMsg)
+        if userID == 0:
+            userID = generateUserID()
+            self.request[1].sendto(str(userID).encode("utf-8"), self.client_address)
         
         # remove client ID from message
         clientMsg = clientMsg[clientMsg.find(" ") + 1:]
@@ -122,7 +130,7 @@ class UDPHandler(socketserver.DatagramRequestHandler):
 def execute():
     
     print("Initializing " + Version.product + " Server - Version: " + Version.buildVersion)
-    
+    print(Encrypt.Fernet.generate_key())
     # Server connect logic
     with socketserver.UDPServer((serverIP, serverPort), UDPHandler) as server:
         print("Server Running...")

@@ -9,17 +9,20 @@ from datetime import datetime
 import Security
 import SQLManager
 
+# retrieves user info
 def getUserInfo(userID):
     # attempt to find user info in database
     db = SQLManager.SQLManager()
     SQL = "SELECT * from tblUser where UserID = ?"
     return db.select(SQL, userID)
 
+# initializes user object
 def initializeUserObject(userObject):
     userInfo = getUserInfo(userObject.ID)
     if len(userInfo) > 1:
         raise ValueError("More than one user returned.")
 
+    # grabs data pulled back from database, uses column names from tblUser
     for record in userInfo:
         userObject.accessLevel = record.AccessLevel
         userObject.banned = record.Banned
@@ -53,6 +56,7 @@ class user():
             self.accessLevel = Security.userAccess
             insertNewUserRecord(self)
         
+    # sets users username and commits it to the database
     def setUsername(self, username):
         self.username = username
         db = SQLManager.SQLManager()
@@ -60,6 +64,7 @@ class user():
         commaListVariable = f"{self.username},{self.ID}"
         db.update(SQL, commaListVariable)
 
+    # sets user to be have admine access
     def setAdmin(self):
         self.accessLevel = Security.adminAccess
         db = SQLManager.SQLManager()
@@ -67,9 +72,11 @@ class user():
         commaListVariable = f"{self.accessLevel},{self.ID}"
         db.update(SQL, commaListVariable)
         
+    # returns whether the user is banned
     def isBanned(self):
         return self.banned;
 
+    # bans the user
     def banUser(self):
         self.banned = True
         db = SQLManager.SQLManager()
@@ -77,6 +84,7 @@ class user():
         commaListVariable = f"{self.banned},{self.ID}"
         db.update(SQL, commaListVariable)
 
+    # unbans the user
     def unbanUser(self):
         self.banned = False
         db = SQLManager.SQLManager()
@@ -86,7 +94,7 @@ class user():
 
     # destructor
     def __del__(self):
-        print("User: " + self.ID + " removed from cache")
+        print("User: " + str(self.ID) + " removed from cache")
             
         
 

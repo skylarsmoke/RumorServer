@@ -1,12 +1,17 @@
 # contains build encyption logic
 
-# currently not used
-
 # imports
+import base64
 from cryptography.fernet import Fernet
 
-def encrypt(msg, key):
+# global variables
+key = b'_v8Jixjz_kPDF9Dqg_7PaWzVDneSC0qcJ1DvEdPCbc0='
+
+# functions
+
+def encrypt(msg):
     return Fernet(key).encrypt(msg.encode('utf-8'))
 
-def decrypt(msg, key):
-    return Fernet(key).decrypt(msg).decode('utf-8')
+def decrypt(msg):
+    
+    return Fernet(key).decrypt(msg).decode("utf-8")
