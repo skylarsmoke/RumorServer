@@ -2,6 +2,8 @@
 
 # imports
 import base64
+import sys
+print(sys.version)
 from cryptography.fernet import Fernet
 
 # global variables

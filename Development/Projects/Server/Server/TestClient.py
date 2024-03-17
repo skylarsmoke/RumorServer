@@ -1,6 +1,8 @@
+#!/usr/bin/env python3.9
 '''
 Test Client for testing Rumor server connectivity
 '''
+
 # b'gAAAAABl9qHKkdzKECWHeHlYKFoqG99kLgfIvbFV-e21UVbScwrSAihZBAL_0xnGArUyNsAtAfvrJryjGS8l3iSmtmankhwVNw=='
 import socket
 import Encrypt
@@ -20,7 +22,6 @@ def execute():
     clientID = clientID[1:]
     clientID = Encrypt.decrypt(clientID)
     clientID = clientID[clientID.find(":") + 1:] + " "
-    print(clientID)
 
     # connect to server
     while True:
@@ -33,7 +34,8 @@ def execute():
             received = str(client.recv(1024), "utf-8")
             fileWrite = open("user.txt", "w", encoding='utf-8')
             fileWrite.truncate()
-            fileWrite.write("userID:" + received)
+            encryptedUserID = Encrypt.encrypt("userID:" + received)
+            fileWrite.write("\'" + encryptedUserID.decode("utf-8") + "\'")
             fileWrite.close()
             clientID = received + " "
     

@@ -130,7 +130,7 @@ class UDPHandler(socketserver.DatagramRequestHandler):
 def execute():
     
     print("Initializing " + Version.product + " Server - Version: " + Version.buildVersion)
-    print(Encrypt.Fernet.generate_key())
+    
     # Server connect logic
     with socketserver.UDPServer((serverIP, serverPort), UDPHandler) as server:
         print("Server Running...")
