@@ -17,6 +17,7 @@ class SQLManager():
         connectionString = f'DRIVER={{SQL Server}};SERVER={SERVER};DATABASE={DATABASE}' # UID={USERNAME};PWD={PASSWORD}
         self.dbConnection = DB.connect(connectionString)
         
+    # executes select statements
     def select(self, SQL, variables = None):
         #split variables into list
         if variables != None:
@@ -34,7 +35,8 @@ class SQLManager():
             cursor.execute(SQL)
         
         return cursor.fetchall()
-        
+      
+    # executes update statements
     def update(self, SQL, variables):
         #split variables into list
         splitVariables = variables.split(',')
@@ -46,19 +48,6 @@ class SQLManager():
         cursor.commit()
         cursor.close()
 
-    # example
-    '''
-    SQL_STATEMENT = """
-    INSERT SalesLT.Product (
-    Name, 
-    ProductNumber, 
-    StandardCost, 
-    ListPrice, 
-    SellStartDate
-    ) OUTPUT INSERTED.ProductID 
-    VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
-    """
-    '''
     # insert function, variables should be comma dilimeted list
     def insert(self, SQL, variables):
         

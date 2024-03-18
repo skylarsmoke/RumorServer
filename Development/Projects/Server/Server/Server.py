@@ -1,3 +1,4 @@
+#!/usr/bin/env python3.9
 '''
 Rumor Server
 
@@ -17,18 +18,18 @@ from timeit import default_timer
 import Security
 import SQLManager
 import Encrypt
-
+from Chat import chat
 
 # Global Variables
 userList = {}
+activeChats = {}
 serverIP = 'localhost'
 serverPort = 5006
 standbyTime = default_timer()
-#key = Encrypt.Fernet.generate_key()
 
 adminAccessDeniedMsg = "Admin access required to access command."
 
-# returns the user object if client IP is found
+# returns the user object if client ID is found
 def isUser(userID):
     if userID in userList:
         return userList[userID]
@@ -63,7 +64,7 @@ def generateUserID():
             return 1
         return int(record.NewUserID)
     
-
+# gets users username
 def getUsername(currentUser):
     username = currentUser.username
     
@@ -72,11 +73,28 @@ def getUsername(currentUser):
     else:
         return username
 
+# gets the number of cached users in the session
 def getNumberOfCachedUsers():
     return len(userList)
 
+# gets the user ID from the client msg
 def getUserID(msg):
     return int(msg[0:msg.find(" ")])
+
+# creates a new chat, returns the chat key
+def createNewChat(userID1, userID2):
+    chatObject = chat(userID1, userID2)
+    activeChats[chatObject.ChatKey] = chatObject
+    return chatObject.ChatKey
+
+def userExists(userID):
+    db = SQLManager.SQLManager()
+    SQL = "SELECT 1 as count from tblUser WHERE UserID = ?"
+    results = db.select(SQL, userID)
+    if len(results) == 0:
+        return False
+    else:
+        return True
 
 # sub class of UDP server
 class UDPHandler(socketserver.DatagramRequestHandler):
@@ -86,7 +104,6 @@ class UDPHandler(socketserver.DatagramRequestHandler):
     def handle(self):
         # once user is connected we must assign a user object to them
         clientMsg = self.request[0].decode('utf-8').strip();
-        test = self.client_address
 
         # retrieve unique client ID
         userID = getUserID(clientMsg)
@@ -96,10 +113,22 @@ class UDPHandler(socketserver.DatagramRequestHandler):
         
         # remove client ID from message
         clientMsg = clientMsg[clientMsg.find(" ") + 1:]
-
+        
         currentUser = getUserObject(self.client_address[0], userID)
         username = getUsername(currentUser) # current users username
         
+        # check for new chat request
+        if (clientMsg.lower().startswith("#newchat:")):
+            userID2 = int(clientMsg[clientMsg.find(":") + 1:])
+            
+            # verify user2 exists
+            if userExists(userID2):
+                ChatKey = createNewChat(userID, userID2)
+                self.request[1].sendto(("#chatkey:" + str(ChatKey)).encode("utf-8"), self.client_address)
+            else:
+                self.request[1].sendto("User does not exist.".encode("utf-8"), self.client_address)
+            
+
         # username command
         if (clientMsg.lower().startswith("@setusername")):
             currentUser.setUsername(clientMsg[clientMsg.find("username") + 9:])

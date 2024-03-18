@@ -71,10 +71,6 @@ class user():
         SQL = "UPDATE tblUser SET AccessLevel = ? WHERE UserID = ?"
         commaListVariable = f"{self.accessLevel},{self.ID}"
         db.update(SQL, commaListVariable)
-        
-    # returns whether the user is banned
-    def isBanned(self):
-        return self.banned;
 
     # bans the user
     def banUser(self):

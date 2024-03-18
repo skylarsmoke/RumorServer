@@ -7,10 +7,6 @@
       "RelativeMoniker": "D:0:0:{DAB5A79A-A069-4F56-9EF4-EE84AA26253E}|Server\\Server.pyproj|solutionrelative:Server\\TestClient.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DAB5A79A-A069-4F56-9EF4-EE84AA26253E}|Server\\Server.pyproj|C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\Encrypt.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{DAB5A79A-A069-4F56-9EF4-EE84AA26253E}|Server\\Server.pyproj|solutionrelative:Server\\Encrypt.py||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DAB5A79A-A069-4F56-9EF4-EE84AA26253E}|Server\\Server.pyproj|C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\Server.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{DAB5A79A-A069-4F56-9EF4-EE84AA26253E}|Server\\Server.pyproj|solutionrelative:Server\\Server.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
@@ -19,12 +15,20 @@
       "RelativeMoniker": "D:0:0:{DAB5A79A-A069-4F56-9EF4-EE84AA26253E}|Server\\Server.pyproj|solutionrelative:Server\\SQLManager.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{DAB5A79A-A069-4F56-9EF4-EE84AA26253E}|Server\\Server.pyproj|C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\Chat.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{DAB5A79A-A069-4F56-9EF4-EE84AA26253E}|Server\\Server.pyproj|solutionrelative:Server\\Chat.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DAB5A79A-A069-4F56-9EF4-EE84AA26253E}|Server\\Server.pyproj|C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\User.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{DAB5A79A-A069-4F56-9EF4-EE84AA26253E}|Server\\Server.pyproj|solutionrelative:Server\\User.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DAB5A79A-A069-4F56-9EF4-EE84AA26253E}|Server\\Server.pyproj|C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\Security.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{DAB5A79A-A069-4F56-9EF4-EE84AA26253E}|Server\\Server.pyproj|solutionrelative:Server\\Security.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAB5A79A-A069-4F56-9EF4-EE84AA26253E}|Server\\Server.pyproj|C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\Encrypt.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{DAB5A79A-A069-4F56-9EF4-EE84AA26253E}|Server\\Server.pyproj|solutionrelative:Server\\Encrypt.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DAB5A79A-A069-4F56-9EF4-EE84AA26253E}|Server\\Server.pyproj|C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\Version.py||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -38,8 +42,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Chat.py",
+              "DocumentMoniker": "C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\Chat.py",
+              "RelativeDocumentMoniker": "Server\\Chat.py",
+              "ToolTip": "C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\Chat.py",
+              "RelativeToolTip": "Server\\Chat.py",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAAeAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAM5SURBVEhLtVVNSFRRFD7z85yGyZnUYZwxIrGUsCRSSrFFJlQriSCKCBdBLmZTlKCBi8xVzc5NiyREIqJVC6FctCgy6sWggyAVWDOpTaWpozO9mTfv53bue3fGMX3yLPrg45x33r3n3Pvd8\u002B6D/wpCiIW5eXR0dBDmmsXhgYGBMPPXYcMC/f397Glz9PT0SKIoTkuSdBGL8Cy8BlZm/woej4fr6uoq5TjuIS6skYXXwLAAz/OGLITP5yspKNLAwsagEgmCYIq9vb15PxqNLgaDwSmcv4el0vBPElGEQiGNQ0NDJTabzY\u002BhOv2NDjuz6/CnFIVobNTlRmk0m8Pg4GA4EomwJx2GO6BJNmJTUxOg3iAoFphNZCG2mIGltAp2u50euoNNz8NwB0ZYEUS4PfIeYvMrIKRFUGQZKUG52wF9504eGh8f59hQDVvuolhChjIXB6Hz9Sy5zpn5ZRgOf3G0tLTUsBQatiyRqhJ4/eEbdD54A6qiIGXdYpGUkIHi4uLtLIWGTbtIwYmUFqsVwtMpePQuDmPRn3C81g/NNT44UVcBnI2Ow13QIqoKx\u002BoTN0jyGSHS3CheRaWmuijhrob7L6byeq9Ko/t09ZolKoDwSp\u002BUmTwK3s6bpiQamYizVVLSXeX81RiVqrqczsS7UslggY8A8o/Tm0qUw\u002Bx8UltljjZcaaXXBVXlbqjyu2FvwANnmqvgQsMnTCpggTQSbTa\u002B2/A2LZToDi\u002BBLFE5JNhZ4oR77SI4yRS\u002Byd3saKU4Jk8BqCIyiwXQ\u002BrvNdVEF9jiVgEoRbHWBU3qJyb4iMak0CyB\u002BRrvMVo7M7aJo15IpiVoPBPKH6dkmsyhClXQpZJa40HdUA3CBJ6Ykoki7KyG\u002BkIS2g2nwkceYhElRVIu/LbwhCC2MTWl1ocXe3XFqDuzeI6b/aFb8FiwWCxSp2B0Ld/XkVG8FLVHQx3Nw4SVY0X0Lh48ieRyfNCURBf2I6BkQ7KFVrZksZZcBvJdwFU5tLCZ\u002BTpNrvhYpAN0BczfE9WtXJ/f53u6HxFO9SG4XrnqQAn1ZzuE5i8mH2fCtAz9/G/IKkZMR8mtCJqkxQrLfYxjjke3INjYUAfAb47MfvRyFLYgAAAAASUVORK5CYII=",
+              "WhenOpened": "2024-03-18T00:00:58.622Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TestClient.py",
+              "DocumentMoniker": "C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\TestClient.py",
+              "RelativeDocumentMoniker": "Server\\TestClient.py",
+              "ToolTip": "C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\TestClient.py",
+              "RelativeToolTip": "Server\\TestClient.py",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAAAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAM5SURBVEhLtVVNSFRRFD7z85yGyZnUYZwxIrGUsCRSSrFFJlQriSCKCBdBLmZTlKCBi8xVzc5NiyREIqJVC6FctCgy6sWggyAVWDOpTaWpozO9mTfv53bue3fGMX3yLPrg45x33r3n3Pvd8\u002B6D/wpCiIW5eXR0dBDmmsXhgYGBMPPXYcMC/f397Glz9PT0SKIoTkuSdBGL8Cy8BlZm/woej4fr6uoq5TjuIS6skYXXwLAAz/OGLITP5yspKNLAwsagEgmCYIq9vb15PxqNLgaDwSmcv4el0vBPElGEQiGNQ0NDJTabzY\u002BhOv2NDjuz6/CnFIVobNTlRmk0m8Pg4GA4EomwJx2GO6BJNmJTUxOg3iAoFphNZCG2mIGltAp2u50euoNNz8NwB0ZYEUS4PfIeYvMrIKRFUGQZKUG52wF9504eGh8f59hQDVvuolhChjIXB6Hz9Sy5zpn5ZRgOf3G0tLTUsBQatiyRqhJ4/eEbdD54A6qiIGXdYpGUkIHi4uLtLIWGTbtIwYmUFqsVwtMpePQuDmPRn3C81g/NNT44UVcBnI2Ow13QIqoKx\u002BoTN0jyGSHS3CheRaWmuijhrob7L6byeq9Ko/t09ZolKoDwSp\u002BUmTwK3s6bpiQamYizVVLSXeX81RiVqrqczsS7UslggY8A8o/Tm0qUw\u002Bx8UltljjZcaaXXBVXlbqjyu2FvwANnmqvgQsMnTCpggTQSbTa\u002B2/A2LZToDi\u002BBLFE5JNhZ4oR77SI4yRS\u002Byd3saKU4Jk8BqCIyiwXQ\u002BrvNdVEF9jiVgEoRbHWBU3qJyb4iMak0CyB\u002BRrvMVo7M7aJo15IpiVoPBPKH6dkmsyhClXQpZJa40HdUA3CBJ6Ykoki7KyG\u002BkIS2g2nwkceYhElRVIu/LbwhCC2MTWl1ocXe3XFqDuzeI6b/aFb8FiwWCxSp2B0Ld/XkVG8FLVHQx3Nw4SVY0X0Lh48ieRyfNCURBf2I6BkQ7KFVrZksZZcBvJdwFU5tLCZ\u002BTpNrvhYpAN0BczfE9WtXJ/f53u6HxFO9SG4XrnqQAn1ZzuE5i8mH2fCtAz9/G/IKkZMR8mtCJqkxQrLfYxjjke3INjYUAfAb47MfvRyFLYgAAAAASUVORK5CYII=",
+              "WhenOpened": "2024-03-06T07:34:35.853Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 5,
@@ -50,11 +80,12 @@
               "RelativeToolTip": "Server\\Security.py",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAWAAAA",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAM5SURBVEhLtVVNSFRRFD7z85yGyZnUYZwxIrGUsCRSSrFFJlQriSCKCBdBLmZTlKCBi8xVzc5NiyREIqJVC6FctCgy6sWggyAVWDOpTaWpozO9mTfv53bue3fGMX3yLPrg45x33r3n3Pvd8\u002B6D/wpCiIW5eXR0dBDmmsXhgYGBMPPXYcMC/f397Glz9PT0SKIoTkuSdBGL8Cy8BlZm/woej4fr6uoq5TjuIS6skYXXwLAAz/OGLITP5yspKNLAwsagEgmCYIq9vb15PxqNLgaDwSmcv4el0vBPElGEQiGNQ0NDJTabzY\u002BhOv2NDjuz6/CnFIVobNTlRmk0m8Pg4GA4EomwJx2GO6BJNmJTUxOg3iAoFphNZCG2mIGltAp2u50euoNNz8NwB0ZYEUS4PfIeYvMrIKRFUGQZKUG52wF9504eGh8f59hQDVvuolhChjIXB6Hz9Sy5zpn5ZRgOf3G0tLTUsBQatiyRqhJ4/eEbdD54A6qiIGXdYpGUkIHi4uLtLIWGTbtIwYmUFqsVwtMpePQuDmPRn3C81g/NNT44UVcBnI2Ow13QIqoKx\u002BoTN0jyGSHS3CheRaWmuijhrob7L6byeq9Ko/t09ZolKoDwSp\u002BUmTwK3s6bpiQamYizVVLSXeX81RiVqrqczsS7UslggY8A8o/Tm0qUw\u002Bx8UltljjZcaaXXBVXlbqjyu2FvwANnmqvgQsMnTCpggTQSbTa\u002B2/A2LZToDi\u002BBLFE5JNhZ4oR77SI4yRS\u002Byd3saKU4Jk8BqCIyiwXQ\u002BrvNdVEF9jiVgEoRbHWBU3qJyb4iMak0CyB\u002BRrvMVo7M7aJo15IpiVoPBPKH6dkmsyhClXQpZJa40HdUA3CBJ6Ykoki7KyG\u002BkIS2g2nwkceYhElRVIu/LbwhCC2MTWl1ocXe3XFqDuzeI6b/aFb8FiwWCxSp2B0Ld/XkVG8FLVHQx3Nw4SVY0X0Lh48ieRyfNCURBf2I6BkQ7KFVrZksZZcBvJdwFU5tLCZ\u002BTpNrvhYpAN0BczfE9WtXJ/f53u6HxFO9SG4XrnqQAn1ZzuE5i8mH2fCtAz9/G/IKkZMR8mtCJqkxQrLfYxjjke3INjYUAfAb47MfvRyFLYgAAAAASUVORK5CYII=",
-              "WhenOpened": "2024-03-07T06:09:29.248Z"
+              "WhenOpened": "2024-03-07T06:09:29.248Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "Encrypt.py",
               "DocumentMoniker": "C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\Encrypt.py",
               "RelativeDocumentMoniker": "Server\\Encrypt.py",
@@ -67,39 +98,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "SQLManager.py",
               "DocumentMoniker": "C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\SQLManager.py",
               "RelativeDocumentMoniker": "Server\\SQLManager.py",
               "ToolTip": "C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\SQLManager.py",
               "RelativeToolTip": "Server\\SQLManager.py",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAvAAAA",
+              "ViewState": "AQIAAAoAAAAAAAAAAADwv0AAAAAAAAAA",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAM5SURBVEhLtVVNSFRRFD7z85yGyZnUYZwxIrGUsCRSSrFFJlQriSCKCBdBLmZTlKCBi8xVzc5NiyREIqJVC6FctCgy6sWggyAVWDOpTaWpozO9mTfv53bue3fGMX3yLPrg45x33r3n3Pvd8\u002B6D/wpCiIW5eXR0dBDmmsXhgYGBMPPXYcMC/f397Glz9PT0SKIoTkuSdBGL8Cy8BlZm/woej4fr6uoq5TjuIS6skYXXwLAAz/OGLITP5yspKNLAwsagEgmCYIq9vb15PxqNLgaDwSmcv4el0vBPElGEQiGNQ0NDJTabzY\u002BhOv2NDjuz6/CnFIVobNTlRmk0m8Pg4GA4EomwJx2GO6BJNmJTUxOg3iAoFphNZCG2mIGltAp2u50euoNNz8NwB0ZYEUS4PfIeYvMrIKRFUGQZKUG52wF9504eGh8f59hQDVvuolhChjIXB6Hz9Sy5zpn5ZRgOf3G0tLTUsBQatiyRqhJ4/eEbdD54A6qiIGXdYpGUkIHi4uLtLIWGTbtIwYmUFqsVwtMpePQuDmPRn3C81g/NNT44UVcBnI2Ow13QIqoKx\u002BoTN0jyGSHS3CheRaWmuijhrob7L6byeq9Ko/t09ZolKoDwSp\u002BUmTwK3s6bpiQamYizVVLSXeX81RiVqrqczsS7UslggY8A8o/Tm0qUw\u002Bx8UltljjZcaaXXBVXlbqjyu2FvwANnmqvgQsMnTCpggTQSbTa\u002B2/A2LZToDi\u002BBLFE5JNhZ4oR77SI4yRS\u002Byd3saKU4Jk8BqCIyiwXQ\u002BrvNdVEF9jiVgEoRbHWBU3qJyb4iMak0CyB\u002BRrvMVo7M7aJo15IpiVoPBPKH6dkmsyhClXQpZJa40HdUA3CBJ6Ykoki7KyG\u002BkIS2g2nwkceYhElRVIu/LbwhCC2MTWl1ocXe3XFqDuzeI6b/aFb8FiwWCxSp2B0Ld/XkVG8FLVHQx3Nw4SVY0X0Lh48ieRyfNCURBf2I6BkQ7KFVrZksZZcBvJdwFU5tLCZ\u002BTpNrvhYpAN0BczfE9WtXJ/f53u6HxFO9SG4XrnqQAn1ZzuE5i8mH2fCtAz9/G/IKkZMR8mtCJqkxQrLfYxjjke3INjYUAfAb47MfvRyFLYgAAAAASUVORK5CYII=",
               "WhenOpened": "2024-03-07T05:31:39.248Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TestClient.py",
-              "DocumentMoniker": "C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\TestClient.py",
-              "RelativeDocumentMoniker": "Server\\TestClient.py",
-              "ToolTip": "C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\TestClient.py",
-              "RelativeToolTip": "Server\\TestClient.py",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
-              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAM5SURBVEhLtVVNSFRRFD7z85yGyZnUYZwxIrGUsCRSSrFFJlQriSCKCBdBLmZTlKCBi8xVzc5NiyREIqJVC6FctCgy6sWggyAVWDOpTaWpozO9mTfv53bue3fGMX3yLPrg45x33r3n3Pvd8\u002B6D/wpCiIW5eXR0dBDmmsXhgYGBMPPXYcMC/f397Glz9PT0SKIoTkuSdBGL8Cy8BlZm/woej4fr6uoq5TjuIS6skYXXwLAAz/OGLITP5yspKNLAwsagEgmCYIq9vb15PxqNLgaDwSmcv4el0vBPElGEQiGNQ0NDJTabzY\u002BhOv2NDjuz6/CnFIVobNTlRmk0m8Pg4GA4EomwJx2GO6BJNmJTUxOg3iAoFphNZCG2mIGltAp2u50euoNNz8NwB0ZYEUS4PfIeYvMrIKRFUGQZKUG52wF9504eGh8f59hQDVvuolhChjIXB6Hz9Sy5zpn5ZRgOf3G0tLTUsBQatiyRqhJ4/eEbdD54A6qiIGXdYpGUkIHi4uLtLIWGTbtIwYmUFqsVwtMpePQuDmPRn3C81g/NNT44UVcBnI2Ow13QIqoKx\u002BoTN0jyGSHS3CheRaWmuijhrob7L6byeq9Ko/t09ZolKoDwSp\u002BUmTwK3s6bpiQamYizVVLSXeX81RiVqrqczsS7UslggY8A8o/Tm0qUw\u002Bx8UltljjZcaaXXBVXlbqjyu2FvwANnmqvgQsMnTCpggTQSbTa\u002B2/A2LZToDi\u002BBLFE5JNhZ4oR77SI4yRS\u002Byd3saKU4Jk8BqCIyiwXQ\u002BrvNdVEF9jiVgEoRbHWBU3qJyb4iMak0CyB\u002BRrvMVo7M7aJo15IpiVoPBPKH6dkmsyhClXQpZJa40HdUA3CBJ6Ykoki7KyG\u002BkIS2g2nwkceYhElRVIu/LbwhCC2MTWl1ocXe3XFqDuzeI6b/aFb8FiwWCxSp2B0Ld/XkVG8FLVHQx3Nw4SVY0X0Lh48ieRyfNCURBf2I6BkQ7KFVrZksZZcBvJdwFU5tLCZ\u002BTpNrvhYpAN0BczfE9WtXJ/f53u6HxFO9SG4XrnqQAn1ZzuE5i8mH2fCtAz9/G/IKkZMR8mtCJqkxQrLfYxjjke3INjYUAfAb47MfvRyFLYgAAAAASUVORK5CYII=",
-              "WhenOpened": "2024-03-06T07:34:35.853Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Server.py",
               "DocumentMoniker": "C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\Server.py",
               "RelativeDocumentMoniker": "Server\\Server.py",
               "ToolTip": "C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\Server.py",
               "RelativeToolTip": "Server\\Server.py",
-              "ViewState": "AQIAAGAAAAAAAAAAAAArwIQAAAAEAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAYAAAA",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAM5SURBVEhLtVVNSFRRFD7z85yGyZnUYZwxIrGUsCRSSrFFJlQriSCKCBdBLmZTlKCBi8xVzc5NiyREIqJVC6FctCgy6sWggyAVWDOpTaWpozO9mTfv53bue3fGMX3yLPrg45x33r3n3Pvd8\u002B6D/wpCiIW5eXR0dBDmmsXhgYGBMPPXYcMC/f397Glz9PT0SKIoTkuSdBGL8Cy8BlZm/woej4fr6uoq5TjuIS6skYXXwLAAz/OGLITP5yspKNLAwsagEgmCYIq9vb15PxqNLgaDwSmcv4el0vBPElGEQiGNQ0NDJTabzY\u002BhOv2NDjuz6/CnFIVobNTlRmk0m8Pg4GA4EomwJx2GO6BJNmJTUxOg3iAoFphNZCG2mIGltAp2u50euoNNz8NwB0ZYEUS4PfIeYvMrIKRFUGQZKUG52wF9504eGh8f59hQDVvuolhChjIXB6Hz9Sy5zpn5ZRgOf3G0tLTUsBQatiyRqhJ4/eEbdD54A6qiIGXdYpGUkIHi4uLtLIWGTbtIwYmUFqsVwtMpePQuDmPRn3C81g/NNT44UVcBnI2Ow13QIqoKx\u002BoTN0jyGSHS3CheRaWmuijhrob7L6byeq9Ko/t09ZolKoDwSp\u002BUmTwK3s6bpiQamYizVVLSXeX81RiVqrqczsS7UslggY8A8o/Tm0qUw\u002Bx8UltljjZcaaXXBVXlbqjyu2FvwANnmqvgQsMnTCpggTQSbTa\u002B2/A2LZToDi\u002BBLFE5JNhZ4oR77SI4yRS\u002Byd3saKU4Jk8BqCIyiwXQ\u002BrvNdVEF9jiVgEoRbHWBU3qJyb4iMak0CyB\u002BRrvMVo7M7aJo15IpiVoPBPKH6dkmsyhClXQpZJa40HdUA3CBJ6Ykoki7KyG\u002BkIS2g2nwkceYhElRVIu/LbwhCC2MTWl1ocXe3XFqDuzeI6b/aFb8FiwWCxSp2B0Ld/XkVG8FLVHQx3Nw4SVY0X0Lh48ieRyfNCURBf2I6BkQ7KFVrZksZZcBvJdwFU5tLCZ\u002BTpNrvhYpAN0BczfE9WtXJ/f53u6HxFO9SG4XrnqQAn1ZzuE5i8mH2fCtAz9/G/IKkZMR8mtCJqkxQrLfYxjjke3INjYUAfAb47MfvRyFLYgAAAAASUVORK5CYII=",
               "WhenOpened": "2024-03-06T03:37:54.435Z",
               "EditorCaption": ""
@@ -112,7 +130,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Version.py",
               "DocumentMoniker": "C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\Version.py",
               "RelativeDocumentMoniker": "Server\\Version.py",
@@ -130,7 +148,7 @@
               "RelativeDocumentMoniker": "Server\\User.py",
               "ToolTip": "C:\\Users\\skyla\\OneDrive\\Desktop\\Development\\Rumor\\RumorServer\\Development\\Projects\\Server\\Server\\User.py",
               "RelativeToolTip": "Server\\User.py",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAlAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADMAAAAZAAAA",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAM5SURBVEhLtVVNSFRRFD7z85yGyZnUYZwxIrGUsCRSSrFFJlQriSCKCBdBLmZTlKCBi8xVzc5NiyREIqJVC6FctCgy6sWggyAVWDOpTaWpozO9mTfv53bue3fGMX3yLPrg45x33r3n3Pvd8\u002B6D/wpCiIW5eXR0dBDmmsXhgYGBMPPXYcMC/f397Glz9PT0SKIoTkuSdBGL8Cy8BlZm/woej4fr6uoq5TjuIS6skYXXwLAAz/OGLITP5yspKNLAwsagEgmCYIq9vb15PxqNLgaDwSmcv4el0vBPElGEQiGNQ0NDJTabzY\u002BhOv2NDjuz6/CnFIVobNTlRmk0m8Pg4GA4EomwJx2GO6BJNmJTUxOg3iAoFphNZCG2mIGltAp2u50euoNNz8NwB0ZYEUS4PfIeYvMrIKRFUGQZKUG52wF9504eGh8f59hQDVvuolhChjIXB6Hz9Sy5zpn5ZRgOf3G0tLTUsBQatiyRqhJ4/eEbdD54A6qiIGXdYpGUkIHi4uLtLIWGTbtIwYmUFqsVwtMpePQuDmPRn3C81g/NNT44UVcBnI2Ow13QIqoKx\u002BoTN0jyGSHS3CheRaWmuijhrob7L6byeq9Ko/t09ZolKoDwSp\u002BUmTwK3s6bpiQamYizVVLSXeX81RiVqrqczsS7UslggY8A8o/Tm0qUw\u002Bx8UltljjZcaaXXBVXlbqjyu2FvwANnmqvgQsMnTCpggTQSbTa\u002B2/A2LZToDi\u002BBLFE5JNhZ4oR77SI4yRS\u002Byd3saKU4Jk8BqCIyiwXQ\u002BrvNdVEF9jiVgEoRbHWBU3qJyb4iMak0CyB\u002BRrvMVo7M7aJo15IpiVoPBPKH6dkmsyhClXQpZJa40HdUA3CBJ6Ykoki7KyG\u002BkIS2g2nwkceYhElRVIu/LbwhCC2MTWl1ocXe3XFqDuzeI6b/aFb8FiwWCxSp2B0Ld/XkVG8FLVHQx3Nw4SVY0X0Lh48ieRyfNCURBf2I6BkQ7KFVrZksZZcBvJdwFU5tLCZ\u002BTpNrvhYpAN0BczfE9WtXJ/f53u6HxFO9SG4XrnqQAn1ZzuE5i8mH2fCtAz9/G/IKkZMR8mtCJqkxQrLfYxjjke3INjYUAfAb47MfvRyFLYgAAAAASUVORK5CYII=",
               "WhenOpened": "2024-03-07T04:17:31.846Z",
               "EditorCaption": ""

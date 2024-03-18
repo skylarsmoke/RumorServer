@@ -3,7 +3,6 @@
 Test Client for testing Rumor server connectivity
 '''
 
-# b'gAAAAABl9qHKkdzKECWHeHlYKFoqG99kLgfIvbFV-e21UVbScwrSAihZBAL_0xnGArUyNsAtAfvrJryjGS8l3iSmtmankhwVNw=='
 import socket
 import Encrypt
 
@@ -38,6 +37,10 @@ def execute():
             fileWrite.write("\'" + encryptedUserID.decode("utf-8") + "\'")
             fileWrite.close()
             clientID = received + " "
+            
+        if (clientMsg.startswith(clientID + "#newchat:")):
+            received = str(client.recv(1024), "utf-8")
+            print("ChatKey: " + received)
     
 
 if __name__ == '__main__':
