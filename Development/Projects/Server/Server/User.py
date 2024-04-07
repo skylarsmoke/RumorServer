@@ -39,6 +39,13 @@ def insertNewUserRecord(userObject):
     commaListVariables = f"{userObject.ID},{userObject.username},{userObject.IP},{userObject.Port},{userObject.accessLevel},{1 if userObject.banned == True else 0},{userObject.lastLogin}"
     db.insert(SQL, commaListVariables)
 
+# updates the last login date
+def updateLastLogin(userObject):
+    db = SQLManager.SQLManager()
+    SQL = "UPDATE tblUser SET LastLogin = ? WHERE UserID = ?"
+    commaListVariables = f"{userObject.lastLogin},{userObject.ID}"
+    db.update(SQL, commaListVariables)
+
 # user object
 class user():
 
@@ -55,6 +62,8 @@ class user():
         if not initializeUserObject(self):
             self.accessLevel = Security.userAccess
             insertNewUserRecord(self)
+        else:
+            updateLastLogin(self)
         
     # sets users username and commits it to the database
     def setUsername(self, username):

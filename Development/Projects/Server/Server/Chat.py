@@ -46,7 +46,7 @@ def storeMsg(ChatKey, Message, UserTo, UserFrom):
     MsgKey = generateMsgKey(ChatKey)
     db = SQLManager.SQLManager()
     SQL = "INSERT INTO tblMessageLog VALUES (?,?,?,?,?,?)"
-    dateSent = datetime.today().strftime('%Y-%m-%d')
+    dateSent = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     commaListVariables = f"{ChatKey},{MsgKey},{UserFrom},{UserTo},{Message},{dateSent}"
     db.insert(SQL, commaListVariables)
     return MsgKey

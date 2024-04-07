@@ -8,24 +8,26 @@ Contains server side operations and hosts connections between users
 # imports
 from asyncio.windows_events import NULL
 from collections import UserList
-from http import client
+from http import client, server
 import uuid
 import socketserver
 import sys
-from User import user
+from User import initializeUserObject, user
 import Version
-from timeit import default_timer
+import time
 import Security
 import SQLManager
 import Encrypt
 from Chat import chat
+import threading
 
 # Global Variables
 userList = {}
 activeChats = {}
 serverIP = 'localhost'
 serverPort = 5006
-standbyTime = default_timer()
+serverRunning = True
+currentUser = NULL
 
 adminAccessDeniedMsg = "Admin access required to access command."
 
@@ -44,7 +46,7 @@ def deleteCachedUserObjects():
 # deletes all cached chat objects
 def deleteCachedChats():
     for chat in activeChats:
-        del chat
+        print(sys.getrefcount(chat))
 
 # returns the current user object and creates a new one if one doesn't exist
 def getUserObject(clientAddress, userID):
@@ -143,6 +145,7 @@ class UDPHandler(socketserver.DatagramRequestHandler):
         # remove client ID from message
         clientMsg = clientMsg[clientMsg.find(" ") + 1:]
         
+        global currentUser
         currentUser = getUserObject(self.client_address[0], userID)
         username = getUsername(currentUser) # current users username
         
@@ -194,28 +197,21 @@ class UDPHandler(socketserver.DatagramRequestHandler):
 
         # prints message from client, used for testing
         print(username + ": " + clientMsg)
-        
-        # reset global timer
-        global standbyTime
-        standbyTime = default_timer()
-        
-        
+                
     def finish(self):
         return super().finish()
 
-# starts server operations
-def execute():
-    
-    print("Initializing " + Version.product + " Server - Version: " + Version.buildVersion)
-    
+# opens the UDP connection for clients to communicate back and forth with the server
+def initializeServer():
     # Server connect logic
     with socketserver.UDPServer((serverIP, serverPort), UDPHandler) as server:
         print("Server Running...")
         
-        # TODO: Multi thread to allow for periodic cache deletion
         try:
             server.serve_forever()
         except:
+            global serverRunning
+            serverRunning = False
             print("Server shutting down...")
             if len(userList) > 0:
                print("Deleting cached user objects...")
@@ -223,6 +219,38 @@ def execute():
                print("Deleting cached chat objects...")
                deleteCachedChats()
             print ("Shutdown Succesful")
+            
+# maintains the server cache, deleting and refreshing objects as needed
+def maintainCache():
+    global serverRunning
+    start = time.monotonic()
+    while (serverRunning):
+        time.sleep(30.0 - ((time.monotonic() - start) % 30.0))
+        print("Deleting cache...")
+        print(f"Active chats: {getNumberOfCachedChats()}")
+        print(f"Active users: {getNumberOfCachedUsers()}")
+        deleteCachedUserObjects()
+        deleteCachedChats()
+        print(f"Active chats: {getNumberOfCachedChats()}")
+        print(f"Active users: {getNumberOfCachedUsers()}")
+        
+
+# starts server operations
+def execute():
+    
+    print("Initializing " + Version.product + " Server - Version: " + Version.buildVersion)
+    
+    t1 = threading.Thread(target=initializeServer)
+    t2 = threading.Thread(target=maintainCache)
+
+    t1.start()
+    t2.start()
+    
+    t1.join()
+    t2.join()
+    
+    print("Thread shutdown successful")
+    
             
 
 if __name__ == "__main__":
