@@ -35,17 +35,22 @@ def isUser(userID):
         return userList[userID]
     else:
         return NULL
-    
-def deleteUserObjects():
+
+# deletes all cached user objects
+def deleteCachedUserObjects():
     for user in userList:
         del user
+        
+# deletes all cached chat objects
+def deleteCachedChats():
+    for chat in activeChats:
+        del chat
 
 # returns the current user object and creates a new one if one doesn't exist
 def getUserObject(clientAddress, userID):
     userObject = isUser(userID)
     
     if userObject is NULL:
-        global userNumber
         newUser = user(userID, clientAddress, 0)
         userList[userID] = newUser
         return newUser
@@ -77,6 +82,9 @@ def getUsername(currentUser):
 def getNumberOfCachedUsers():
     return len(userList)
 
+def getNumberOfCachedChats():
+    return len(activeChats)
+
 # gets the user ID from the client msg
 def getUserID(msg):
     return int(msg[0:msg.find(" ")])
@@ -87,6 +95,7 @@ def createNewChat(userID1, userID2):
     activeChats[chatObject.ChatKey] = chatObject
     return chatObject.ChatKey
 
+# checks if a user exists
 def userExists(userID):
     db = SQLManager.SQLManager()
     SQL = "SELECT 1 as count from tblUser WHERE UserID = ?"
@@ -95,6 +104,26 @@ def userExists(userID):
         return False
     else:
         return True
+    
+# check if a chat exists for a given chat key and userID
+def chatExists(userID, ChatKey):
+    db = SQLManager.SQLManager()
+    SQL = "SELECT 1 AS count from tblChat WHERE UserID = ? AND ChatKey = ?"
+    commaListVariables = f"{userID},{ChatKey}"
+    results = db.select(SQL, commaListVariables)
+    if len(results) == 0:
+        return False
+    else:
+        return True
+
+# retrieves a chat object from a given chat key
+def getChatObject(ChatKey, User1, User2):
+     if ChatKey in activeChats:
+        return activeChats[ChatKey]
+     else:
+        chatObject = chat(User1, User2, ChatKey)
+        activeChats[chatObject.ChatKey] = chatObject
+        return chatObject
 
 # sub class of UDP server
 class UDPHandler(socketserver.DatagramRequestHandler):
@@ -127,7 +156,26 @@ class UDPHandler(socketserver.DatagramRequestHandler):
                 self.request[1].sendto(("#chatkey:" + str(ChatKey)).encode("utf-8"), self.client_address)
             else:
                 self.request[1].sendto("User does not exist.".encode("utf-8"), self.client_address)
+         
+        if (clientMsg.lower().startswith("#newmsg:")):
+            # remove new msg clause
+            msgParts = clientMsg.split(":")
+
+            # get chatkey, userTo, and message
+            ChatKey = int(msgParts[1])
+            UserTo = int(msgParts[2])
             
+            Message = msgParts[3]
+            
+            # verify chat exists
+            if chatExists(userID, ChatKey):
+                ChatObject = getChatObject(ChatKey, userID, UserTo)
+                t = ChatObject.User1
+                s = ChatObject.User2
+                MsgKey = ChatObject.msg(UserTo, userID, Message)
+                self.request[1].sendto(("#msgkey:" + str(MsgKey)).encode("utf-8"), self.client_address)
+            else:
+                self.request[1].sendto("Chat does not exist.".encode("utf-8"), self.client_address)
 
         # username command
         if (clientMsg.lower().startswith("@setusername")):
@@ -164,13 +212,16 @@ def execute():
     with socketserver.UDPServer((serverIP, serverPort), UDPHandler) as server:
         print("Server Running...")
         
+        # TODO: Multi thread to allow for periodic cache deletion
         try:
             server.serve_forever()
         except:
             print("Server shutting down...")
             if len(userList) > 0:
-               print("Deleting user objects...")
-               deleteUserObjects()
+               print("Deleting cached user objects...")
+               deleteCachedUserObjects()
+               print("Deleting cached chat objects...")
+               deleteCachedChats()
             print ("Shutdown Succesful")
             
 

@@ -64,7 +64,7 @@ class user():
         commaListVariable = f"{self.username},{self.ID}"
         db.update(SQL, commaListVariable)
 
-    # sets user to be have admine access
+    # sets user to be have admin access
     def setAdmin(self):
         self.accessLevel = Security.adminAccess
         db = SQLManager.SQLManager()
