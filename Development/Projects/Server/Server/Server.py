@@ -20,6 +20,7 @@ import SQLManager
 import Encrypt
 from Chat import chat
 import threading
+import json
 
 # Global Variables
 userList = {}
@@ -40,13 +41,11 @@ def isUser(userID):
 
 # deletes all cached user objects
 def deleteCachedUserObjects():
-    for user in userList:
-        del user
+    userList.clear()
         
 # deletes all cached chat objects
 def deleteCachedChats():
-    for chat in activeChats:
-        print(sys.getrefcount(chat))
+    activeChats.clear()
 
 # returns the current user object and creates a new one if one doesn't exist
 def getUserObject(clientAddress, userID):
@@ -127,6 +126,40 @@ def getChatObject(ChatKey, User1, User2):
         activeChats[chatObject.ChatKey] = chatObject
         return chatObject
 
+# retrieves chat data for ping response
+def retrieveChatData(userID):
+    db = SQLManager.SQLManager()
+    SQL = "SELECT UserID, ChatKey, Created FROM tblChat WHERE UserID = ? AND Transmitted = 0"
+    return db.selectPing(SQL, userID)
+
+# retrieves msg data for ping response
+def retrieveMsgData(ChatData):
+    # first we grab the Chat keys
+    ChatKeys = ""
+    count = 0
+    for item in ChatData:
+        ChatKeys += str(item["ChatKey"]) + ","
+        count += 1
+
+    # remove last comma
+    ChatKeys = ChatKeys.rstrip(',')    
+
+    db = SQLManager.SQLManager()
+    inParameterHolder = ",".join("?" * count)
+    SQL = f"SELECT ChatKey, MsgKey, UserFrom, UserTo, Message, DateSent FROM tblMessageLog WHERE ChatKey IN ({inParameterHolder}) and Transmitted = 0" 
+    return db.selectPing(SQL, ChatKeys)
+
+# serializes the chat and msg data to JSON
+def serializeData(ChatData, MsgData):
+    serializedChat = json.dumps(ChatData, indent=4, sort_keys=True, default=str)
+    serializedMsg = json.dumps(MsgData, indent=4, sort_keys=True, default=str)
+    
+    # we join together the serialized data separating them by a dollar sign
+    return serializedChat + "$" + serializedMsg
+
+def markDataAsTransmitted(UserID):
+    print("") # TODO Mark data as transmitted to prevent duplicate transmission
+
 # sub class of UDP server
 class UDPHandler(socketserver.DatagramRequestHandler):
     def setup(self):
@@ -148,6 +181,19 @@ class UDPHandler(socketserver.DatagramRequestHandler):
         global currentUser
         currentUser = getUserObject(self.client_address[0], userID)
         username = getUsername(currentUser) # current users username
+
+        if (clientMsg.lower() == "#pong"):
+            markDataAsTransmitted(userID)
+
+        # transmit message data to users requesting
+        if (clientMsg.lower() == "#ping"):
+            ChatData = retrieveChatData(userID)
+            MsgData = retrieveMsgData(ChatData)
+            
+            # serialize and send data to user
+            SerializedData = serializeData(ChatData, MsgData)
+            
+            self.request[1].sendto(SerializedData.encode("utf-8"), self.client_address)
         
         # check for new chat request
         if (clientMsg.lower().startswith("#newchat:")):
@@ -216,8 +262,11 @@ def initializeServer():
             if len(userList) > 0:
                print("Deleting cached user objects...")
                deleteCachedUserObjects()
+            
+            if len(activeChats) > 0:
                print("Deleting cached chat objects...")
                deleteCachedChats()
+               
             print ("Shutdown Succesful")
             
 # maintains the server cache, deleting and refreshing objects as needed
@@ -225,14 +274,10 @@ def maintainCache():
     global serverRunning
     start = time.monotonic()
     while (serverRunning):
-        time.sleep(30.0 - ((time.monotonic() - start) % 30.0))
+        time.sleep(300.0 - ((time.monotonic() - start) % 300.0))
         print("Deleting cache...")
-        print(f"Active chats: {getNumberOfCachedChats()}")
-        print(f"Active users: {getNumberOfCachedUsers()}")
         deleteCachedUserObjects()
         deleteCachedChats()
-        print(f"Active chats: {getNumberOfCachedChats()}")
-        print(f"Active users: {getNumberOfCachedUsers()}")
         
 
 # starts server operations
@@ -250,8 +295,7 @@ def execute():
     t2.join()
     
     print("Thread shutdown successful")
-    
-            
 
+    # main 
 if __name__ == "__main__":
     execute()

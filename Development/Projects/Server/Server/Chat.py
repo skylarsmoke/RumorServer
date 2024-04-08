@@ -87,6 +87,6 @@ class chat():
         
     # destructor
     def __del__(self):
-        print("Chat: " + str(self.ChatKey) + " removed from cache")
+        print("Chat " + str(self.ChatKey) + " removed from cache")
         
 

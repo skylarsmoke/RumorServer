@@ -1,6 +1,6 @@
 # Contains build information
 
 product = "Rumor"
-buildVersion = "Beta 0.0.1.7"
+buildVersion = "Beta 0.0.2.3"
 isProduction = False
 

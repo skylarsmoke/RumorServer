@@ -35,6 +35,32 @@ class SQLManager():
             cursor.execute(SQL)
         
         return cursor.fetchall()
+
+    # executes a select but returns a cursor to give more information when receiving a ping
+    def selectPing(self, SQL, variables = None):
+        #split variables into list
+        if variables != None:
+            if isinstance(variables, str):
+                splitVariables = variables.split(',')
+            else:
+                splitVariables = str(variables)
+                
+            # establish cursor
+            cursor = self.dbConnection.cursor()
+            cursor.execute(SQL, *splitVariables)
+        else:
+            # establish cursor
+            cursor = self.dbConnection.cursor()
+            cursor.execute(SQL)
+
+        # create dictionary of data
+        columns = [column[0] for column in cursor.description]
+        preparedData = []
+        
+        for row in cursor.fetchall():
+            preparedData.append(dict(zip(columns, row)))
+        
+        return preparedData
       
     # executes update statements
     def update(self, SQL, variables):
