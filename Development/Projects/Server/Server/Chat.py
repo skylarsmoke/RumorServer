@@ -72,7 +72,7 @@ class chat():
         else:
             return False
 
-    # handles logic to store and send messages to users
+    # handles logic to store messages
     def msg(self, UserTo, UserFrom, Message):
         # check if user from and to exist in chat
         if (UserTo != self.User1 and UserTo != self.User2):
@@ -83,7 +83,6 @@ class chat():
 
         # when a message is created we store it first
         MsgKey = storeMsg(self.ChatKey, Message, UserTo, UserFrom)
-        #sendMsg()
         
     # destructor
     def __del__(self):

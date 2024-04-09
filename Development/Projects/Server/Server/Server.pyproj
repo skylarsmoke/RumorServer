@@ -24,6 +24,7 @@
   <ItemGroup>
     <Compile Include="Chat.py" />
     <Compile Include="Encrypt.py" />
+    <Compile Include="PingManager.py" />
     <Compile Include="Security.py" />
     <Compile Include="Server.py" />
     <Compile Include="SQLManager.py" />

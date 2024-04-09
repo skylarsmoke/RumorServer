@@ -21,6 +21,7 @@ import Encrypt
 from Chat import chat
 import threading
 import json
+import PingManager
 
 # Global Variables
 userList = {}
@@ -29,6 +30,10 @@ serverIP = 'localhost'
 serverPort = 5006
 serverRunning = True
 currentUser = NULL
+numberOfSessionUsers = 0
+numberOfSessionChats = 0
+numberOfSessionMessages = 0
+pings = PingManager.ping()
 
 adminAccessDeniedMsg = "Admin access required to access command."
 
@@ -50,7 +55,9 @@ def deleteCachedChats():
 # returns the current user object and creates a new one if one doesn't exist
 def getUserObject(clientAddress, userID):
     userObject = isUser(userID)
-    
+    global numberOfSessionUsers
+    numberOfSessionUsers += 1
+
     if userObject is NULL:
         newUser = user(userID, clientAddress, 0)
         userList[userID] = newUser
@@ -158,7 +165,11 @@ def serializeData(ChatData, MsgData):
     return serializedChat + "$" + serializedMsg
 
 def markDataAsTransmitted(UserID):
-    print("") # TODO Mark data as transmitted to prevent duplicate transmission
+    print("Marking data")
+    
+# generates a unique ping ID
+def generatePingID():
+    return uuid.uuid4()
 
 # sub class of UDP server
 class UDPHandler(socketserver.DatagramRequestHandler):
@@ -183,7 +194,9 @@ class UDPHandler(socketserver.DatagramRequestHandler):
         username = getUsername(currentUser) # current users username
 
         if (clientMsg.lower() == "#pong"):
-            markDataAsTransmitted(userID)
+            # TODO: Get Ping ID from pong message
+            pingID = ""
+            markDataAsTransmitted(userID, pingID)
 
         # transmit message data to users requesting
         if (clientMsg.lower() == "#ping"):
@@ -191,13 +204,22 @@ class UDPHandler(socketserver.DatagramRequestHandler):
             MsgData = retrieveMsgData(ChatData)
             
             # serialize and send data to user
-            SerializedData = serializeData(ChatData, MsgData)
+            pingID = generatePingID()
+            serializedData = serializeData(ChatData, MsgData) + "*" + pingID
             
-            self.request[1].sendto(SerializedData.encode("utf-8"), self.client_address)
+            self.request[1].sendto(serializedData.encode("utf-8"), self.client_address)
+            
+            # add ping to ping manager
+            global pings
+            pings.addPing(userID, pingID)
         
         # check for new chat request
         if (clientMsg.lower().startswith("#newchat:")):
             userID2 = int(clientMsg[clientMsg.find(":") + 1:])
+            
+            # count chats in session
+            global numberOfSessionChats 
+            numberOfSessionChats += 1
             
             # verify user2 exists
             if userExists(userID2):
@@ -210,6 +232,10 @@ class UDPHandler(socketserver.DatagramRequestHandler):
             # remove new msg clause
             msgParts = clientMsg.split(":")
 
+            # count messages in session
+            global numberOfSessionMessages
+            numberOfSessionMessages += 1
+
             # get chatkey, userTo, and message
             ChatKey = int(msgParts[1])
             UserTo = int(msgParts[2])
@@ -219,9 +245,8 @@ class UDPHandler(socketserver.DatagramRequestHandler):
             # verify chat exists
             if chatExists(userID, ChatKey):
                 ChatObject = getChatObject(ChatKey, userID, UserTo)
-                t = ChatObject.User1
-                s = ChatObject.User2
                 MsgKey = ChatObject.msg(UserTo, userID, Message)
+                
                 self.request[1].sendto(("#msgkey:" + str(MsgKey)).encode("utf-8"), self.client_address)
             else:
                 self.request[1].sendto("Chat does not exist.".encode("utf-8"), self.client_address)

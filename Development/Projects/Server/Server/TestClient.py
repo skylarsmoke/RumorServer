@@ -41,6 +41,12 @@ def execute():
         if (clientMsg.startswith(clientID + "#newchat:")):
             received = str(client.recv(1024), "utf-8")
             print("ChatKey: " + received)
+            
+        if (clientMsg.startswith(clientID + "#ping")):
+            received = str(client.recv(10000), "utf-8")
+            
+            # send acknowledgement of receipt
+            client.sendto((clientID + "#pong").encode("utf-8"), (serverIP, serverPort))
     
 
 if __name__ == '__main__':
