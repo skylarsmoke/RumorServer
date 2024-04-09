@@ -167,10 +167,6 @@ def serializeData(ChatData, MsgData):
 def markDataAsTransmitted(UserID):
     print("Marking data")
     
-# generates a unique ping ID
-def generatePingID():
-    return uuid.uuid4()
-
 # sub class of UDP server
 class UDPHandler(socketserver.DatagramRequestHandler):
     def setup(self):
@@ -203,15 +199,17 @@ class UDPHandler(socketserver.DatagramRequestHandler):
             ChatData = retrieveChatData(userID)
             MsgData = retrieveMsgData(ChatData)
             
+            # add ping to ping manager
+            global pings
+            # TODO: Update to match new addPing class
+            #pingID = pings.addPing(userID)
+            
             # serialize and send data to user
-            pingID = generatePingID()
-            serializedData = serializeData(ChatData, MsgData) + "*" + pingID
+            serializedData = serializeData(ChatData, MsgData) # + "*" + pingID
             
             self.request[1].sendto(serializedData.encode("utf-8"), self.client_address)
             
-            # add ping to ping manager
-            global pings
-            pings.addPing(userID, pingID)
+            
         
         # check for new chat request
         if (clientMsg.lower().startswith("#newchat:")):
