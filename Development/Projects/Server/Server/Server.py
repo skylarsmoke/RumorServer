@@ -140,21 +140,23 @@ def retrieveChatData(userID):
     return db.selectPing(SQL, userID)
 
 # retrieves msg data for ping response
-def retrieveMsgData(ChatData):
-    # first we grab the Chat keys
-    ChatKeys = ""
-    count = 0
-    for item in ChatData:
-        ChatKeys += str(item["ChatKey"]) + ","
-        count += 1
-
-    # remove last comma
-    ChatKeys = ChatKeys.rstrip(',')    
+def retrieveMsgData(ChatKeys, ChatCount):
+    # TODO: Alter chat table to no longer transmit and account for change 
 
     db = SQLManager.SQLManager()
-    inParameterHolder = ",".join("?" * count)
+    inParameterHolder = ",".join("?" * ChatCount)
     SQL = f"SELECT ChatKey, MsgKey, UserFrom, UserTo, Message, DateSent FROM tblMessageLog WHERE ChatKey IN ({inParameterHolder}) and Transmitted = 0" 
     return db.selectPing(SQL, ChatKeys)
+
+# retrieves msg keys from msg data
+def retrieveMsgKeys(MsgData):
+    MsgKeys = ""
+    for item in MsgData:
+        MsgKeys += str(item["MsgKey"]) + ","
+        
+    # remove last comma
+    MsgKeys = MsgKeys.rstrip(',')   
+    return MsgKeys
 
 # serializes the chat and msg data to JSON
 def serializeData(ChatData, MsgData):
@@ -164,9 +166,17 @@ def serializeData(ChatData, MsgData):
     # we join together the serialized data separating them by a dollar sign
     return serializedChat + "$" + serializedMsg
 
-def markDataAsTransmitted(UserID):
-    print("Marking data")
-    
+def retrieveChatKeys(ChatData):
+    ChatKeys = ""
+    count = 0
+    for item in ChatData:
+        ChatKeys += str(item["ChatKey"]) + ","
+        count += 1
+        
+    # remove last comma
+    ChatKeys = ChatKeys.rstrip(',')   
+    return ChatKeys, count
+
 # sub class of UDP server
 class UDPHandler(socketserver.DatagramRequestHandler):
     def setup(self):
@@ -175,6 +185,7 @@ class UDPHandler(socketserver.DatagramRequestHandler):
     def handle(self):
         # once user is connected we must assign a user object to them
         clientMsg = self.request[0].decode('utf-8').strip();
+        global pings
 
         # retrieve unique client ID
         userID = getUserID(clientMsg)
@@ -189,28 +200,30 @@ class UDPHandler(socketserver.DatagramRequestHandler):
         currentUser = getUserObject(self.client_address[0], userID)
         username = getUsername(currentUser) # current users username
 
-        if (clientMsg.lower() == "#pong"):
-            # TODO: Get Ping ID from pong message
-            pingID = ""
-            markDataAsTransmitted(userID, pingID)
+        if (clientMsg.lower().startswith("#pong")):
+            # Get Ping ID from pong message
+            pingID = clientMsg[clientMsg.find(":") + 1:]
+            pings.removePing(userID, pingID)
 
         # transmit message data to users requesting
         if (clientMsg.lower() == "#ping"):
             ChatData = retrieveChatData(userID)
-            MsgData = retrieveMsgData(ChatData)
+            ChatKeys, ChatCount = retrieveChatKeys(ChatData)
+            MsgKeys = ""
+            MsgData = NULL
+            
+            if (len(ChatData) > 0):
+                MsgData = retrieveMsgData(ChatKeys, ChatCount)
+                MsgKeys = retrieveMsgKeys(MsgData)
             
             # add ping to ping manager
-            global pings
-            # TODO: Update to match new addPing class
-            #pingID = pings.addPing(userID)
+            pingID = pings.addPing(userID, ChatKeys, MsgKeys)
             
             # serialize and send data to user
-            serializedData = serializeData(ChatData, MsgData) # + "*" + pingID
+            serializedData = str(pingID) + "*" + serializeData(ChatData, MsgData)
             
             self.request[1].sendto(serializedData.encode("utf-8"), self.client_address)
             
-            
-        
         # check for new chat request
         if (clientMsg.lower().startswith("#newchat:")):
             userID2 = int(clientMsg[clientMsg.find(":") + 1:])
@@ -266,6 +279,7 @@ class UDPHandler(socketserver.DatagramRequestHandler):
 
         # prints message from client, used for testing
         print(username + ": " + clientMsg)
+        
                 
     def finish(self):
         return super().finish()
@@ -290,7 +304,7 @@ def initializeServer():
                print("Deleting cached chat objects...")
                deleteCachedChats()
                
-            print ("Shutdown Succesful")
+            print ("Waiting on cache maintenance...")
             
 # maintains the server cache, deleting and refreshing objects as needed
 def maintainCache():
@@ -308,16 +322,13 @@ def execute():
     
     print("Initializing " + Version.product + " Server - Version: " + Version.buildVersion)
     
-    t1 = threading.Thread(target=initializeServer)
-    t2 = threading.Thread(target=maintainCache)
-
+    t1 = threading.Thread(target=maintainCache)
+    t1.daemon = True
     t1.start()
-    t2.start()
-    
+    initializeServer()
     t1.join()
-    t2.join()
     
-    print("Thread shutdown successful")
+    print("Server shutdown successful")
 
     # main 
 if __name__ == "__main__":
