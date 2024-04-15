@@ -136,13 +136,11 @@ def getChatObject(ChatKey, User1, User2):
 # retrieves chat data for ping response
 def retrieveChatData(userID):
     db = SQLManager.SQLManager()
-    SQL = "SELECT UserID, ChatKey, Created FROM tblChat WHERE UserID = ? AND Transmitted = 0"
+    SQL = "SELECT UserID, ChatKey, Created FROM tblChat WHERE UserID = ?"
     return db.selectPing(SQL, userID)
 
 # retrieves msg data for ping response
 def retrieveMsgData(ChatKeys, ChatCount):
-    # TODO: Alter chat table to no longer transmit and account for change 
-
     db = SQLManager.SQLManager()
     inParameterHolder = ",".join("?" * ChatCount)
     SQL = f"SELECT ChatKey, MsgKey, UserFrom, UserTo, Message, DateSent FROM tblMessageLog WHERE ChatKey IN ({inParameterHolder}) and Transmitted = 0" 
@@ -159,12 +157,11 @@ def retrieveMsgKeys(MsgData):
     return MsgKeys
 
 # serializes the chat and msg data to JSON
-def serializeData(ChatData, MsgData):
-    serializedChat = json.dumps(ChatData, indent=4, sort_keys=True, default=str)
+def serializeData(MsgData):
     serializedMsg = json.dumps(MsgData, indent=4, sort_keys=True, default=str)
     
     # we join together the serialized data separating them by a dollar sign
-    return serializedChat + "$" + serializedMsg
+    return serializedMsg
 
 def retrieveChatKeys(ChatData):
     ChatKeys = ""
@@ -217,10 +214,10 @@ class UDPHandler(socketserver.DatagramRequestHandler):
                 MsgKeys = retrieveMsgKeys(MsgData)
             
             # add ping to ping manager
-            pingID = pings.addPing(userID, ChatKeys, MsgKeys)
+            pingID = pings.addPing(userID, MsgKeys)
             
             # serialize and send data to user
-            serializedData = str(pingID) + "*" + serializeData(ChatData, MsgData)
+            serializedData = str(pingID) + "*" + serializeData(MsgData)
             
             self.request[1].sendto(serializedData.encode("utf-8"), self.client_address)
             
