@@ -6,4 +6,4 @@ Language: Python
 
 Network Protocol: UDP
 
-The entry point of this code lives in Server.py. Once the server is started a UDP handler is created and it waits for incoming network requests from the chat clients. These requests consist of creating chats and sending messages between users.
+The entry point of this code lives in Server.py. Once the server is started a UDP handler is created and it waits for incoming network requests from the chat clients. These requests consist of creating chats and sending messages between users. The server stores all data transferred between users as well as user logon information.
